@@ -9,6 +9,7 @@ TagManager:
   - Nave2
   - Nave3
   - Enemy
+  - Shield
   layers:
   - Default
   - TransparentFX

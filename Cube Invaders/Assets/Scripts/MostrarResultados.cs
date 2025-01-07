@@ -1,32 +1,24 @@
-using TMPro;
 using UnityEngine;
+using TMPro;
 
 public class MostrarResultados : MonoBehaviour
 {
-    public TextMeshProUGUI scoreText; // Texto para el puntaje
-    public TextMeshProUGUI timeText;  // Texto para el tiempo
+    public TextMeshProUGUI finalTimeText; // Referencia al texto del tiempo
+    public TextMeshProUGUI finalScoreText; // Referencia al texto del puntaje
 
     void Start()
     {
-        if (GameManager.Instance == null)
+        if (GameManager.Instance != null)
         {
-            Debug.LogError("GameManager no está disponible.");
-            return;
-        }
+            // Mostrar el tiempo formateado
+            finalTimeText.text = $"Time: {GameManager.Instance.ElapsedTime:0.00}s";
 
-        if (scoreText == null || timeText == null)
+            // Mostrar el puntaje
+            finalScoreText.text = $"Score: {GameManager.Instance.Score}";
+        }
+        else
         {
-            Debug.LogError("Los textos no están asignados en el Inspector.");
-            return;
+            Debug.LogError("GameManager no encontrado. Asegúrate de que persista entre escenas.");
         }
-
-        // Mostrar puntaje
-        scoreText.text = $"Puntaje: {GameManager.Instance.Score}";
-
-        // Mostrar tiempo final
-        float totalTime = GameManager.Instance.ElapsedTime;
-        int minutes = Mathf.FloorToInt(totalTime / 60f);
-        int seconds = Mathf.FloorToInt(totalTime % 60f);
-        timeText.text = $"Tiempo: {minutes:00}:{seconds:00}";
     }
 }

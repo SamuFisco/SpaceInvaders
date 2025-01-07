@@ -2,32 +2,41 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    public static GameManager Instance;
+    public static GameManager Instance; // Singleton
+
+    public int Score { get; private set; } // Puntaje
+    public float ElapsedTime { get; private set; } // Tiempo transcurrido
 
     private void Awake()
     {
         if (Instance == null)
         {
             Instance = this;
-            DontDestroyOnLoad(gameObject); // Mantener entre escenas
+            DontDestroyOnLoad(gameObject); // Persiste entre escenas
         }
         else
         {
-            Destroy(gameObject);
+            Destroy(gameObject); // Evitar duplicados
         }
     }
 
-    public int Score { get; private set; } // Puntaje
-    public float ElapsedTime { get; private set; } // Tiempo transcurrido
+    private void Update()
+    {
+        // Actualizar el tiempo solo si es necesario
+        ElapsedTime += Time.deltaTime;
+    }
 
-    // Métodos para actualizar puntaje y tiempo
+    // Método público para añadir puntaje
     public void AddScore(int points)
     {
         Score += points;
+        Debug.Log($"Puntaje actualizado: {Score}");
     }
 
-    public void SetFinalTime(float time)
+    // Método para reiniciar datos (opcional)
+    public void ResetGame()
     {
-        ElapsedTime = time; // Actualizar tiempo final
+        Score = 0;
+        ElapsedTime = 0;
     }
 }

@@ -2,56 +2,81 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyShooting : MonoBehaviour
+public class DisparoEnemigos : MonoBehaviour
 {
     public GameObject enemyProjectile; // Prefab del proyectil
-    public float shootInterval = 2f; // Intervalo entre disparos
-    public Transform enemyGroup; // Referencia al grupo de enemigos
-    public LayerMask enemyLayer; // Capa de los enemigos
+    public float shootInterval = 3f; // Intervalo entre disparos
+    public float projectileSpeed = 10f; // Velocidad del proyectil
+
+    private bool isGameActive = true; // Controla si el juego está activo
 
     void Start()
     {
-        StartCoroutine(ShootFromBottomRow());
+        // Comienza la lógica de disparo
+        StartCoroutine(EnemyShootRoutine());
     }
 
-    IEnumerator ShootFromBottomRow()
+    IEnumerator EnemyShootRoutine()
     {
-        while (true)
+        while (isGameActive)
         {
+            // Espera un intervalo antes de disparar
             yield return new WaitForSeconds(shootInterval);
 
-            // Obtener enemigos en la fila inferior usando Raycast
-            List<Transform> bottomRowEnemies = GetBottomRowEnemies();
+            // Obtén la fila activa más baja (cercana al jugador)
+            List<Transform> activeRow = GetLowestActiveRow();
 
-            if (bottomRowEnemies.Count > 0)
+            if (activeRow.Count > 0)
             {
-                // Elegir un enemigo aleatorio de la fila inferior
-                Transform shootingEnemy = bottomRowEnemies[Random.Range(0, bottomRowEnemies.Count)];
+                // Selecciona un enemigo aleatorio de la fila más baja
+                Transform randomEnemy = activeRow[Random.Range(0, activeRow.Count)];
 
-                // Instanciar proyectil
-                Instantiate(enemyProjectile, shootingEnemy.position, Quaternion.identity);
+                // Instancia el proyectil en la posición del enemigo
+                GameObject projectile = Instantiate(enemyProjectile, randomEnemy.position, Quaternion.identity);
+
+                // Asigna la dirección del proyectil hacia abajo
+                Rigidbody projectileRb = projectile.GetComponent<Rigidbody>();
+                if (projectileRb != null)
+                {
+                    projectileRb.velocity = Vector3.down * projectileSpeed;
+                }
+
+                Debug.Log($"Enemigo disparando desde fila {randomEnemy.GetComponent<Enemy>().fila}");
             }
         }
     }
 
-    List<Transform> GetBottomRowEnemies()
+    List<Transform> GetLowestActiveRow()
     {
-        List<Transform> bottomRowEnemies = new List<Transform>();
+        int lowestRow = -1; // Inicializamos con un valor bajo (más cerca del jugador)
+        List<Transform> activeRow = new List<Transform>();
 
-        foreach (Transform enemy in enemyGroup)
+        foreach (Transform enemy in transform)
         {
-            if (enemy.gameObject.activeSelf)
+            Enemy enemyScript = enemy.GetComponent<Enemy>();
+
+            if (enemyScript != null && enemy.gameObject.activeSelf)
             {
-                // Realizar Raycast hacia abajo desde la posición del enemigo
-                RaycastHit hit;
-                if (!Physics.Raycast(enemy.position, Vector3.down, out hit, Mathf.Infinity, enemyLayer))
+                // Si encontramos enemigos activos en una fila más baja (cercana al jugador), actualizamos
+                if (enemyScript.fila > lowestRow)
                 {
-                    // Si no hay nada debajo, agregar a la lista de disparo
-                    bottomRowEnemies.Add(enemy);
+                    lowestRow = enemyScript.fila;
+                    activeRow.Clear(); // Reiniciamos la lista para incluir solo la nueva fila más baja
+                }
+
+                if (enemyScript.fila == lowestRow)
+                {
+                    activeRow.Add(enemy); // Agregamos el enemigo a la fila activa
                 }
             }
         }
 
-        return bottomRowEnemies;
+        return activeRow;
+    }
+
+    // Método para desactivar la lógica de disparo (por ejemplo, en Game Over)
+    public void StopShooting()
+    {
+        isGameActive = false;
     }
 }
