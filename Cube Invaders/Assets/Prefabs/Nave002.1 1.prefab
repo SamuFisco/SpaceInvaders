@@ -348,9 +348,11 @@ GameObject:
   - component: {fileID: 3070866551009890145}
   - component: {fileID: 3901936209322750954}
   - component: {fileID: 6481906493194923524}
+  - component: {fileID: 1894576904779985465}
+  - component: {fileID: -2775444361511398636}
   m_Layer: 0
   m_Name: Nave002.1 1
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -395,12 +397,12 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 3.8380337, y: 3.8079486, z: 1}
+  m_Center: {x: -0.0050142407, y: 1.4039736, z: 0}
 --- !u!54 &3051554966928030283
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -424,7 +426,7 @@ Rigidbody:
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
   m_UseGravity: 1
-  m_IsKinematic: 0
+  m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 120
   m_CollisionDetection: 0
@@ -578,6 +580,33 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   explosionSound: {fileID: 8300000, guid: 312e0fecb454c72488ac5ebb681245fe, type: 3}
   bulletSound: {fileID: 8300000, guid: a0a617ee9b0d27d48af67a26dfe79322, type: 3}
+--- !u!114 &1894576904779985465
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3302174962543133611}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 254a6ab3862cde1419162058da199dcf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 100
+  gameOverScene: GameOver
+--- !u!114 &-2775444361511398636
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3302174962543133611}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c0c68811ec65fae458ba72cd78114889, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  normalSpeed: 30
 --- !u!1 &4020090496140095109
 GameObject:
   m_ObjectHideFlags: 0
