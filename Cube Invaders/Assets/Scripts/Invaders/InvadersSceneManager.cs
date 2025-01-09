@@ -10,10 +10,10 @@ public class InvadersSceneManager : MonoBehaviour
     {
         if (GameManager.Instance != null)
         {
-            int finalScore = scoreManager.GetTotalScore();
+          int finalScore = scoreManager.GetTotalScore();
             float finalTime = gameTimer.GetElapsedTime();
 
-            Debug.Log($"Guardando valores en GameManager: Final Score={finalScore}, Final Time={finalTime}");
+            //Debug.Log($"Guardando valores en GameManager: Final Score={finalScore}, Final Time={finalTime}");
 
             GameManager.Instance.SetFinalResults(finalScore, finalTime);
         }

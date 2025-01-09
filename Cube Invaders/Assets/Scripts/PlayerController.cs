@@ -38,7 +38,7 @@ public class PlayerController : MonoBehaviour
 
     private void HandleShooting()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space) || Input.GetButtonDown("Fire2") || Input.GetKeyDown(KeyCode.JoystickButton2))
         {
             ShootProjectile();
         }
@@ -62,7 +62,7 @@ public class PlayerController : MonoBehaviour
         }
         else
         {
-            Debug.LogError("Prefab del proyectil o punto de disparo no asignado.");
+            Debug.Log("Prefab del proyectil o punto de disparo no asignado.");
         }
     }
 }

@@ -936,7 +936,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ac8462a97c7b1b41b408a10d919690a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  intensity: 10
+  intensity: 40
   duration: 0.5
   fallingText: {fileID: 620556768}
   dropDelay: 1

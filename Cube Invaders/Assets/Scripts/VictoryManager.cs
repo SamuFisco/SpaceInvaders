@@ -52,7 +52,7 @@ public class VictoryManager : MonoBehaviour
         Time.timeScale = 0;
 
         // Obtiene los valores de puntaje y tiempo
-        int finalScore = scoreManager.GetTotalScore();
+       int finalScore = scoreManager.GetTotalScore();
         float finalTime = gameTimer.GetElapsedTime();
 
         // Actualiza los textos

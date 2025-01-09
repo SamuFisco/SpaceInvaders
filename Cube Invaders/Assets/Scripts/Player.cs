@@ -1,7 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting.Antlr3.Runtime.Tree;
-using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 public class Player : MonoBehaviour
@@ -24,8 +22,8 @@ public class Player : MonoBehaviour
         movement = transform.TransformDirection(movement);
         playerController.Move(movement * Time.deltaTime * 50);
 
-        // Verificamos si se presiona la barra espaciadora para disparar
-        if (Input.GetKeyDown(KeyCode.Space))
+        // Verificamos si se presiona la barra espaciadora, el botón de disparo o el botón "X" del mando
+        if (Input.GetKeyDown(KeyCode.Space) || Input.GetButtonDown("Fire2") || Input.GetKeyDown(KeyCode.JoystickButton2))
         {
             // Llamamos al método de sonido desde el SoundManager
             if (SoundManager != null)

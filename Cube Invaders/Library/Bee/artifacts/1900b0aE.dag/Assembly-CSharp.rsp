@@ -328,7 +328,6 @@
 -r:"C:/Program Files/Unity/Hub/Editor/2022.3.53f1/Editor/Data/PlaybackEngines/AndroidPlayer/Unity.Android.Gradle.dll"
 -r:"C:/Program Files/Unity/Hub/Editor/2022.3.53f1/Editor/Data/PlaybackEngines/AndroidPlayer/Unity.Android.GradleProject.dll"
 -r:"C:/Program Files/Unity/Hub/Editor/2022.3.53f1/Editor/Data/PlaybackEngines/AndroidPlayer/Unity.Android.Types.dll"
--r:"C:/Program Files/Unity/Hub/Editor/2022.3.53f1/Editor/Data/PlaybackEngines/MacStandaloneSupport/UnityEditor.iOS.Extensions.Xcode.dll"
 -r:"Library/PackageCache/com.unity.testtools.codecoverage@1.2.6/lib/ReportGenerator/ReportGeneratorMerged.dll"
 -r:"Library/PackageCache/com.unity.visualscripting@1.9.4/Runtime/VisualScripting.Flow/Dependencies/NCalc/Unity.VisualScripting.Antlr3.Runtime.dll"
 -r:"Library/Bee/artifacts/1900b0aE.dag/Unity.EditorCoroutines.Editor.ref.dll"
@@ -403,12 +402,14 @@
 "Assets/LeanTween/Testing/TestingSceneSwitching.cs"
 "Assets/LeanTween/Testing/TestingSequencer.cs"
 "Assets/Scripts/AnimarOpciones.cs"
+"Assets/Scripts/AnimarYouLose.cs"
 "Assets/Scripts/BarraDeVida.cs"
 "Assets/Scripts/BotonesMenu.cs"
 "Assets/Scripts/CountdownManager.cs"
 "Assets/Scripts/DebugGameManager.cs"
 "Assets/Scripts/DefensaSegmento.cs"
 "Assets/Scripts/DisparoEnemigos.cs"
+"Assets/Scripts/DisparoEspecial/DisparoEspecial.cs"
 "Assets/Scripts/EnemyCollision.cs"
 "Assets/Scripts/EnemyCounter.cs"
 "Assets/Scripts/EnemyGroupMovement.cs"
@@ -441,6 +442,7 @@
 "Assets/Scripts/SoundManager.cs"
 "Assets/Scripts/TitleAnimation.cs"
 "Assets/Scripts/Win.cs"
+"Assets/Scripts/WinMenu/WinMenu.cs"
 -langversion:9.0
 /deterministic
 /optimize+
